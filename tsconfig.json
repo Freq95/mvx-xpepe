@@ -24,7 +24,7 @@
     "jsx": "react-jsx",
     "baseUrl": "src",
     "paths": {
-      "config": ["config/config.testnet.ts"]
+      "config": ["config/config.devnet.ts"]
     }
   },
   "include": ["src"]

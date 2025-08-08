@@ -1,0 +1,142 @@
+/* Container styling */
+.xpepe-game-wrapper {
+  margin: 0;
+  padding: 0;
+  background: #313131;
+  font-family: 'Courier New', monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 3rem;
+  color: #00ff90;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #00ff90;
+}
+
+.game-container {
+  width: 600px;
+  height: 150px;
+  background: #313131;
+  border: 1px solid #313131;
+  position: relative;
+  overflow: hidden;
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  width: 1200px;
+  height: 12px;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='12'><rect width='100' height='12' fill='%23535353'/><rect x='0' y='0' width='2' height='2' fill='%23ababab'/><rect x='10' y='1' width='1' height='1' fill='%23ababab'/><rect x='25' y='0' width='3' height='1' fill='%23ababab'/><rect x='40' y='1' width='2' height='1' fill='%23ababab'/><rect x='60' y='0' width='1' height='2' fill='%23ababab'/><rect x='75' y='1' width='2' height='1' fill='%23ababab'/><rect x='90' y='0' width='1' height='1' fill='%23ababab'/></svg>") repeat-x;
+  animation: moveGround 1s linear infinite;
+}
+
+.cloud {
+  position: absolute;
+  width: 46px;
+  height: 14px;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='46' height='14'><path d='M36 6c2 0 4 2 4 4s-2 4-4 4H10c-3 0-6-2-6-5s3-5 6-5c0-2 2-4 4-4s4 2 4 4c2-1 4 0 4 0 3-2 7 0 7 0 2-1 4 0 4 0z' fill='%23d3d3d3'/></svg>");
+  top: 20px;
+  animation: moveClouds 8s linear infinite;
+}
+
+.dino {
+  position: absolute;
+  width: 44px;
+  height: 47px;
+  bottom: 0px;
+  left: 50px;
+  transition: bottom 0.1s ease;
+  animation: moveXpepe 0.3s ease-in-out infinite alternate;
+}
+
+.dino.jump {
+  bottom: 80px;
+}
+
+.dino.duck {
+  height: 25px;
+  bottom: 0px;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='25'><g fill='%23535353'><path d='M8 8h28v4H8zm-2 4h32v4H6zm-2 4h36v4H4zm0 4h36v4H4zm2 4h6v4H6zm26 0h6v4h-6z'/></g></svg>") no-repeat;
+}
+
+.cactus {
+  position: absolute;
+  bottom: 12px;
+  width: 17px;
+  height: 35px;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='17' height='35'><g fill='%23535353'><path d='M6 0h4v8h-4zm-2 8h8v27H4zm2 27h4v8h-4z'/><rect x='0' y='15' width='4' height='8'/><rect x='12' y='10' width='4' height='12'/></g></svg>") no-repeat;
+  right: 0;
+}
+
+.cactus.large {
+  width: 25px;
+  height: 50px;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='25' height='50'><g fill='%23535353'><path d='M8 0h8v12h-8zm-2 12h12v38H6zm2 38h8v12h-8z'/><rect x='0' y='20' width='6' height='12'/><rect x='18' y='15' width='6' height='18'/><rect x='2' y='35' width='4' height='8'/></g></svg>") no-repeat;
+}
+
+.pterodactyl {
+  position: absolute;
+  width: 46px;
+  height: 40px;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='46' height='40'><g fill='%23535353'><path d='M6 12h4v4H6zm4-4h8v4h-8zm8-4h12v4H18zm12 0h8v4h-8zm8 4h8v4h-8zm-20 8h12v4H18zm12 0h8v4h-8zm-16 4h8v4h-8zm-4 4h8v4H10zm16 0h12v4H26zm-8 4h4v4h-4zm8 0h8v4h-8z'/></g></svg>") no-repeat;
+  right: 0;
+  animation: flyPterodactyl 0.3s ease-in-out infinite alternate;
+}
+
+.score {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: #535353;
+}
+
+.game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #535353;
+}
+
+.game-over h2 {
+  font-size: 24px;
+  margin: 0 0 10px 0;
+}
+
+.game-over p {
+  font-size: 14px;
+  margin: 0;
+}
+
+@keyframes moveXpepe {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-2px); }
+}
+
+@keyframes moveGround {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100px); }
+}
+
+@keyframes moveClouds {
+  0% { right: -46px; }
+  100% { right: 100%; }
+}
+
+@keyframes flyPterodactyl {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+
+.pause {
+  animation-play-state: paused !important;
+}

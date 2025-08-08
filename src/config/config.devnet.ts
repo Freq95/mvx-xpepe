@@ -3,7 +3,14 @@ import { EnvironmentsEnum } from 'lib';
 export * from './sharedConfig';
 
 export const API_URL = 'https://devnet-template-api.multiversx.com';
+
+// OG SC
+// export const contractAddress =
+//   'erd1qqqqqqqqqqqqqpgqm6ad6xrsjvxlcdcffqe8w58trpec09ug9l5qde96pq';
+
+// my SC
 export const contractAddress =
-  'erd1qqqqqqqqqqqqqpgqm6ad6xrsjvxlcdcffqe8w58trpec09ug9l5qde96pq';
+  'erd1qqqqqqqqqqqqqpgqgea0wjcpczenhp3g73q32dveue2n7q8lswhqgpulcc';
+
 export const environment = EnvironmentsEnum.devnet;
 export const sampleAuthenticatedDomains = [API_URL];

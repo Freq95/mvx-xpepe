@@ -35,3 +35,8 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+dev-net-wallet-pem.txt
+wallet
+
+/contract*
