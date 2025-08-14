@@ -1,6 +1,8 @@
 import { contractAddress } from 'config';
 import { WidgetType } from 'types/widget.types';
 import { Widget } from './components';
+import { contractAddressScoreBoard } from 'config';
+
 import {
   Account,
   BatchTransactions,
@@ -9,7 +11,8 @@ import {
   PingPongRaw,
   PingPongService,
   SignMessage,
-  Transactions
+  Transactions,
+  ScoreboardRaw
 } from './widgets';
 
 const WIDGETS: WidgetType[] = [
@@ -77,7 +80,22 @@ const WIDGETS: WidgetType[] = [
     description: 'List transactions filtered for a given Smart Contract',
     reference:
       'https://api.multiversx.com/#/accounts/AccountController_getAccountTransactions'
+  },
+  {
+    title: 'Scoreboard (ABI)',
+    widget: ScoreboardRaw,
+    description: 'Submit score + view minFee & best (Scoreboard SC)',
+    reference: 'https://docs.multiversx.com/developers/smart-contracts/'
+  }, 
+  {
+    title: 'Transactions (Scoreboard)',
+    widget: Transactions,
+    props: { receiver: contractAddressScoreBoard },
+    description: 'List tx pentru Scoreboard',
+    reference:
+      'https://api.multiversx.com/#/accounts/AccountController_getAccountTransactions'
   }
+
 ];
 
 export const Dashboard = () => {
