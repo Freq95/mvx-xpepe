@@ -1,0 +1,97 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.91.0-nightly",
+            "commitHash": "2fd855fbfc8239285aa2d596f76a8cc75e17ce02",
+            "commitDate": "2025-08-07",
+            "channel": "Nightly",
+            "short": "rustc 1.91.0-nightly (2fd855fbf 2025-08-07)"
+        },
+        "contractCrate": {
+            "name": "scoreboard",
+            "version": "0.0.1"
+        },
+        "framework": {
+            "name": "multiversx-sc",
+            "version": "0.56.1"
+        }
+    },
+    "name": "Scoreboard",
+    "constructor": {
+        "inputs": [
+            {
+                "name": "min_fee",
+                "type": "BigUint"
+            }
+        ],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "docs": [
+                "Pay fee to record/upgrade best score"
+            ],
+            "name": "submitScore",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "EGLD"
+            ],
+            "inputs": [
+                {
+                    "name": "score",
+                    "type": "u32"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getBest",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "addr",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "u32"
+                }
+            ]
+        },
+        {
+            "name": "getMinFee",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "BigUint"
+                }
+            ]
+        }
+    ],
+    "events": [
+        {
+            "identifier": "score_submitted",
+            "inputs": [
+                {
+                    "name": "who",
+                    "type": "Address",
+                    "indexed": true
+                },
+                {
+                    "name": "score",
+                    "type": "u32",
+                    "indexed": true
+                },
+                {
+                    "name": "paid",
+                    "type": "BigUint"
+                }
+            ]
+        }
+    ],
+    "esdtAttributes": [],
+    "hasCallback": false,
+    "types": {}
+}

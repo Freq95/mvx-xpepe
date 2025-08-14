@@ -12,5 +12,10 @@ export const API_URL = 'https://devnet-template-api.multiversx.com';
 export const contractAddress =
   'erd1qqqqqqqqqqqqqpgqgea0wjcpczenhp3g73q32dveue2n7q8lswhqgpulcc';
 
+ // my SC
+export const contractAddressScoreBoard =
+  'erd1qqqqqqqqqqqqqpgq48qe73d6shw44j2j342n4me5x83rpupnswhqk7lx9j';
+
+
 export const environment = EnvironmentsEnum.devnet;
 export const sampleAuthenticatedDomains = [API_URL];

@@ -6,3 +6,4 @@ export * from './PingPongRaw';
 export * from './PingPongService';
 export * from './SignMessage';
 export * from './Transactions';
+export * from './ScoreboardRaw';
