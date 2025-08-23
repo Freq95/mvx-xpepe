@@ -40,3 +40,4 @@ dev-net-wallet-pem.txt
 wallet
 
 /contract*
+/contract_backup*

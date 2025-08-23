@@ -82,9 +82,9 @@ const WIDGETS: WidgetType[] = [
       'https://api.multiversx.com/#/accounts/AccountController_getAccountTransactions'
   },
   {
-    title: 'Scoreboard (ABI)',
+    title: 'Scoreboard',
     widget: ScoreboardRaw,
-    description: 'Submit score + view minFee & best (Scoreboard SC)',
+    description: 'submit your score below',
     reference: 'https://docs.multiversx.com/developers/smart-contracts/'
   }, 
   {

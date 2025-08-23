@@ -12,7 +12,7 @@ export const ScoreboardRaw = () => {
   const best = useGetBest(address);                // number
   const { submitScoreFromAbi } = useSendScoreboardTransaction();
 
-  const [score, setScore] = useState<number>(42);
+  const [score, setScore] = useState<number>(100);
   const onSubmit = async () => {
     if (!address || !minFeeWei || minFeeWei === '0') return;
     await submitScoreFromAbi(score, minFeeWei);    // plătește exact minFee
