@@ -1,3 +1,4 @@
+// --- file: src/pages/Dashboard/Dashboard.tsx (varianta completă cu widgetul de Top10)
 import { contractAddress } from 'config';
 import { WidgetType } from 'types/widget.types';
 import { Widget } from './components';
@@ -12,7 +13,9 @@ import {
   PingPongService,
   SignMessage,
   Transactions,
-  ScoreboardRaw
+  ScoreboardRaw,
+  Top10Scoreboard
+  // Top10Debug
 } from './widgets';
 
 const WIDGETS: WidgetType[] = [
@@ -86,7 +89,7 @@ const WIDGETS: WidgetType[] = [
     widget: ScoreboardRaw,
     description: 'submit your score below',
     reference: 'https://docs.multiversx.com/developers/smart-contracts/'
-  }, 
+  },
   {
     title: 'Transactions (Scoreboard)',
     widget: Transactions,
@@ -94,7 +97,18 @@ const WIDGETS: WidgetType[] = [
     description: 'List tx pentru Scoreboard',
     reference:
       'https://api.multiversx.com/#/accounts/AccountController_getAccountTransactions'
-  }
+  },
+  {
+    title: 'Top 10 Scoreboard',
+    widget: Top10Scoreboard,
+    description: 'Query SC via getTop and show <address, score>',
+    reference: 'https://docs.multiversx.com/developers/smart-contracts/'
+  },
+  // { title: 'Top 10 (raw)',
+  //   widget: Top10Debug,
+  //   description: 'Raw VM response for getTop',
+  //   reference: 'vm-values/query'
+  // },
 
 ];
 

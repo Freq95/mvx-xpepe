@@ -26,11 +26,12 @@
         ],
         "outputs": []
     },
+    "upgradeConstructor": {
+        "inputs": [],
+        "outputs": []
+    },
     "endpoints": [
         {
-            "docs": [
-                "Pay fee to record/upgrade best score"
-            ],
             "name": "submitScore",
             "mutability": "mutable",
             "payableInTokens": [
@@ -40,6 +41,34 @@
                 {
                     "name": "score",
                     "type": "u32"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "ownerWithdraw",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "amount",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "ownerWithdrawAll",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "setMinFee",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "new_fee",
+                    "type": "BigUint"
                 }
             ],
             "outputs": []
@@ -68,6 +97,27 @@
                     "type": "BigUint"
                 }
             ]
+        },
+        {
+            "name": "getOwner",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "Address"
+                }
+            ]
+        },
+        {
+            "name": "getTop",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "variadic<tuple<Address,u32>>",
+                    "multi_result": true
+                }
+            ]
         }
     ],
     "events": [
@@ -75,7 +125,7 @@
             "identifier": "score_submitted",
             "inputs": [
                 {
-                    "name": "who",
+                    "name": "addr",
                     "type": "Address",
                     "indexed": true
                 },
@@ -85,7 +135,21 @@
                     "indexed": true
                 },
                 {
-                    "name": "paid",
+                    "name": "payment",
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "identifier": "withdrawn",
+            "inputs": [
+                {
+                    "name": "to",
+                    "type": "Address",
+                    "indexed": true
+                },
+                {
+                    "name": "amount",
                     "type": "BigUint"
                 }
             ]

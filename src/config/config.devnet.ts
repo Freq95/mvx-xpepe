@@ -21,8 +21,12 @@ export const contractAddress =
 //   'erd1qqqqqqqqqqqqqpgqg2rm62z6xf4swml480etlyg2suz49dyeswhqwz7uhj';
 
 // al treilea SC v3 cu send scor si afisare top 10[fix la out of range] + withdraw function
+// export const contractAddressScoreBoard =
+//   'erd1qqqqqqqqqqqqqpgql95r26jmazg8k3yfwg0urxrjp3uv05utswhqhnxxhj';
+
+// al 4-lea SC v4 cu send scor si afisare top 10[fix la out of range] + withdraw function
 export const contractAddressScoreBoard =
-  'erd1qqqqqqqqqqqqqpgql95r26jmazg8k3yfwg0urxrjp3uv05utswhqhnxxhj';
+  'erd1qqqqqqqqqqqqqpgqgqlctz6u0nspmr0srlfkvenumvpfnwhpswhq58stmr';
 
 
 export const environment = EnvironmentsEnum.devnet;
