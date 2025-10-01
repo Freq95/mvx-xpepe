@@ -2,10 +2,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../../styles/xPEPEstyle.css';
 import DinoGame from '../../logic/XpepeGameEngine';
 import { CHARACTERS, CharacterId } from './characters';
+import { useGetAccount, useGetLoginInfo, useGetNetworkConfig } from "lib";
 
 export type XpepeProps = { 
   onGameOver?: (finalScore: number) => void; 
   onScoreChange?: (score: number) => void; 
+};
+
+// 🔹 mapping NFT -> sprite
+const NFT_TO_CHARACTER: Record<string, CharacterId> = {
+  "XPEPE-937414-01": "xpepeRed",
+  "XPEPE-937414-02": "xpepeYellow"
 };
 
 const DinoGameComponent: React.FC<XpepeProps> = ({ onGameOver, onScoreChange }) => {
@@ -13,6 +20,12 @@ const DinoGameComponent: React.FC<XpepeProps> = ({ onGameOver, onScoreChange }) 
   const [character, setCharacter] = useState<CharacterId>(
     (localStorage.getItem("character") as CharacterId) || "xpepe"
   );
+
+  // 🔹 NFT support
+  const { address } = useGetAccount();
+  const { isLoggedIn } = useGetLoginInfo();
+  const { network } = useGetNetworkConfig();
+  const [nftSprites, setNftSprites] = useState<any[]>([]);
 
   useEffect(() => {
     gameRef.current = new DinoGame({ onGameOver, onScoreChange, autoStart: true });
@@ -25,15 +38,37 @@ const DinoGameComponent: React.FC<XpepeProps> = ({ onGameOver, onScoreChange }) 
     };
   }, [onGameOver, onScoreChange]);
 
+  // 🔹 fetch NFTs din colecția XPEPE-937414
+  useEffect(() => {
+    const loadNfts = async () => {
+      if (!isLoggedIn || !address) return;
+      try {
+        const res = await fetch(`${network.apiAddress}/accounts/${address}/nfts?collections=XPEPE-937414`);
+        const data = await res.json();
+        setNftSprites(data);
+      } catch (err) {
+        console.error("Error fetching NFTs:", err);
+      }
+    };
+    loadNfts();
+  }, [isLoggedIn, address, network]);
+
   const handleChangeCharacter = (id: CharacterId) => {
-    console.log("switch to", id);
     setCharacter(id);
     localStorage.setItem("character", id);
   };
 
+  // 🔹 când selectăm NFT → verificăm mapping, fallback la galben
+  const handleSelectNft = (nft: any) => {
+    console.log("NFT selectat:", nft.identifier);
+    const mappedChar = NFT_TO_CHARACTER[nft.identifier] || "xpepeYellow";
+    setCharacter(mappedChar);
+    localStorage.setItem("character", mappedChar);
+  };
+
   return (
     <div className="flex flex-col gap-4 items-center">
-      {/* 🔹 UI de selecție caractere */}
+      {/* 🔹 UI selecție caractere built-in */}
       <div className="flex gap-4">
         {Object.entries(CHARACTERS).map(([id, Svg]) => (
           <button
@@ -48,6 +83,30 @@ const DinoGameComponent: React.FC<XpepeProps> = ({ onGameOver, onScoreChange }) 
           </button>
         ))}
       </div>
+
+      {/* 🔹 NFT Characters */}
+      {nftSprites.length > 0 && (
+        <div className="flex gap-4 mt-2">
+          {nftSprites.map((nft) => (
+            <button
+              key={nft.identifier}
+              onClick={() => handleSelectNft(nft)}
+              className={`p-2 border rounded-xl flex flex-col items-center hover:shadow-lg transition ${
+                character === (NFT_TO_CHARACTER[nft.identifier] || "xpepeYellow")
+                  ? 'ring-2 ring-yellow-500'
+                  : ''
+              }`}
+            >
+              <img
+                src={nft.media?.[0]?.url}
+                alt={nft.name}
+                className="w-12 h-12 object-contain"
+              />
+              <span className="text-xs mt-1">{nft.name}</span>
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* 🔹 Jocul */}
       <div className="game-container" id="gameContainer">
