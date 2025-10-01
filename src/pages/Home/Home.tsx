@@ -7,11 +7,11 @@ import DinoGameComponent from '../../components/Xpepe/Xpepe';
 export const Home = () => {
   return (
     <PageWrapper>
-      <div className="w-full flex justify-center py-12 px-4">
+      {/* <div className="w-full flex justify-center py-12 px-4">
         <div className="bg-white rounded-xl shadow-lg p-4 w-full max-w-[700px] aspect-video flex items-center justify-center border border-gray-200">
           <DinoGameComponent />
         </div>
-      </div>
+      </div> */}
 
       <div className='flex flex-col-reverse sm:flex-row items-center h-full w-full'>
         <div className='flex items-start sm:items-center h-full sm:w-1/2 sm:bg-center'>

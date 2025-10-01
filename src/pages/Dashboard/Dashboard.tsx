@@ -3,6 +3,10 @@ import { contractAddress } from 'config';
 import { WidgetType } from 'types/widget.types';
 import { Widget } from './components';
 import { contractAddressScoreBoard } from 'config';
+import DinoGameComponent from '../../components/Xpepe/Xpepe';
+import { GameScoreSubmitOnChoice } from './widgets/SubmitGameScore';
+import { NftDashboard } from './widgets/NftDashboard';
+
 
 import {
   Account,
@@ -104,12 +108,30 @@ const WIDGETS: WidgetType[] = [
     description: 'Query SC via getTop and show <address, score>',
     reference: 'https://docs.multiversx.com/developers/smart-contracts/'
   },
-  // { title: 'Top 10 (raw)',
-  //   widget: Top10Debug,
-  //   description: 'Raw VM response for getTop',
-  //   reference: 'vm-values/query'
+  {
+    title: 'NFT Dashboard',
+    widget: NftDashboard,
+    description: 'Afișează toate NFT-urile din wallet-ul conectat',
+    reference: 'https://api.multiversx.com/#/accounts/AccountController_getAccountNfts'
+  },
+  // {
+  //   title: 'xPEPE Game',
+  //   widget: () => (
+  //     <div className="w-full flex justify-center py-12 px-4">
+  //       <div className="bg-white rounded-xl shadow-lg p-4 w-full max-w-[700px] aspect-video flex items-center justify-center border border-gray-200">
+  //         <DinoGameComponent />
+  //       </div>
+  //     </div>
+  //   ),
+  //   description: 'Mini-game integrat în dashboard',
+  //   reference: 'https://youtube.com' // sau lasă gol
   // },
-
+  {
+  title: 'Scoreboard (Choice)',
+  widget: GameScoreSubmitOnChoice,
+  description: 'După game-over, userul alege dacă trimite scorul',
+  reference: 'https://docs.multiversx.com/developers/smart-contracts/'
+},
 ];
 
 export const Dashboard = () => {

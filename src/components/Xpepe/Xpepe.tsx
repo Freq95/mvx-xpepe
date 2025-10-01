@@ -1,19 +1,29 @@
-import React, { useEffect } from 'react';
+// --- file: src/components/Xpepe/Xpepe.tsx
+import React, { useEffect, useRef } from 'react';
 import '../../styles/xPEPEstyle.css';
 import DinoGame from '../../logic/XpepeGameEngine';
 
-const DinoGameComponent: React.FC = () => {
-  useEffect(() => {
-    new DinoGame();
-  }, []);
 
-  return (
-    <div className="game-container" id="gameContainer">
-      <div className="ground" id="ground"></div>
-      <div className="cloud" id="cloud1" style={{ right: '100px' }}></div>
-      <div className="cloud" id="cloud2" style={{ right: '300px' }}></div>
-      <div className="cloud" id="cloud3" style={{ right: '500px' }}></div>
-      <div className="dino" id="dino">
+export type XpepeProps = { onGameOver?: (finalScore: number) => void; onScoreChange?: (score: number) => void; };
+
+
+const DinoGameComponent: React.FC<XpepeProps> = ({ onGameOver, onScoreChange }) => {
+const gameRef = useRef<any>(null);
+
+
+useEffect(() => {
+gameRef.current = new DinoGame({ onGameOver, onScoreChange, autoStart: true });
+return () => { try { gameRef.current?.pauseGame?.(); gameRef.current?.destroy?.(); } catch {} gameRef.current = null; };
+}, [onGameOver, onScoreChange]);
+
+
+return (
+<div className="game-container" id="gameContainer">
+<div className="ground" id="ground"></div>
+<div className="cloud" id="cloud1" style={{ right: '100px' }}></div>
+<div className="cloud" id="cloud2" style={{ right: '300px' }}></div>
+<div className="cloud" id="cloud3" style={{ right: '500px' }}></div>
+<div className="dino" id="dino">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shapeRendering="crispEdges">
           <rect x="11" y="3" width="1" height="1" fill="#141115" />
           <rect x="12" y="3" width="1" height="1" fill="#141115" />
@@ -488,12 +498,11 @@ const DinoGameComponent: React.FC = () => {
       <div className="score" id="score">00000</div>
       <div className="game-over" id="gameOver" style={{ display: 'none' }}>
         <h2>G A M E &nbsp; O V E R</h2>
-        <p>Press SPACE to restart</p>
-      </div>
-    </div>
-  );
-
-  
+<p>Press SPACE to restart</p>
+</div>
+</div>
+);
 };
+
 
 export default DinoGameComponent;

@@ -8,4 +8,4 @@ export * from './SignMessage';
 export * from './Transactions';
 export * from './ScoreboardRaw';
 export * from './Top10Scoreboard';
-// export * from './Top10Scoreboard/Top10Debug';
+export * from './SubmitGameScore';
